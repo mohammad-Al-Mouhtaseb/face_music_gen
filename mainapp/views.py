@@ -1,18 +1,15 @@
 from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse, FileResponse, HttpResponseRedirect
+import requests
 
-# # Create your views here.
-# !python3 -m pip install -U git+https://github.com/facebookresearch/audiocraft#egg=audiocraft
+from transformers import AutoProcessor, MusicgenForConditionalGeneration, pipeline
+# import scipy
 
-from audiocraft.models import musicgen
-from audiocraft.utils.notebook import display_audio
-import torch
-
-
-model = musicgen.MusicGen.get_pretrained('medium', device='cuda')
-model.set_generation_params(duration=20)
-
-def gen(request):
-    res = model.generate([
-        'syrian traditional music'
-    ], 
-        progress=True)
+# synthesiser=pipeline("text-to-audio","facebook/musicgen-small")
+model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
+processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
+# import torch
+# device = "cuda:0" if torch.cuda.is_available() else "cpu"
+# device="cpu"
+# model.to(device)
+# sampling_rate = model.config.audio_encoder.sampling_rate
