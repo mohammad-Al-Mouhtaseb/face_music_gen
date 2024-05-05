@@ -13,3 +13,6 @@ model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-smal
 # device="cpu"
 # model.to(device)
 # sampling_rate = model.config.audio_encoder.sampling_rate
+
+def gen(request):
+    pass
