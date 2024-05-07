@@ -20,15 +20,12 @@ def gen(request,text):
         padding=True,
         return_tensors="pt",
     )
-
     audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=256)
-    scipy.io.wavfile.write("mainapp/music/"+i+".wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
-    
+    scipy.io.wavfile.write("mainapp/music/"+str(i)+".wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
+    i=i+1
     try:
-        m = open("mainapp/music/"+i+".wav", 'rb')
+        m = open("mainapp/music/"+str(i)+".wav", 'rb')
         response = FileResponse(m)
         return response
     except:
         return JsonResponse({"res":None})
-    i=i+1
-    return HttpResponse(audio_values[0].cpu().numpy())
