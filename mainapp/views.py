@@ -12,8 +12,6 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
 sampling_rate = model.config.audio_encoder.sampling_rate
 
-i=0
-
 def gen(request,text):
     inputs = processor(
         text=["80s pop track with bassy drums and synth", "90s rock song with loud guitars and heavy drums"],
@@ -21,10 +19,9 @@ def gen(request,text):
         return_tensors="pt",
     )
     audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=256)
-    scipy.io.wavfile.write("mainapp/music/"+str(i)+".wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
-    i=i+1
+    scipy.io.wavfile.write("mainapp/music/m1.wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
     try:
-        m = open("mainapp/music/"+str(i)+".wav", 'rb')
+        m = open("mainapp/music/m1.wav", 'rb')
         response = FileResponse(m)
         return response
     except:
