@@ -2,11 +2,15 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, FileResponse, HttpResponseRedirect
 import requests
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
 import scipy
 
-model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
-processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
+model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small", force_download=True)
+processor = AutoProcessor.from_pretrained("facebook/musicgen-small", force_download=True)
+
 import torch
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
