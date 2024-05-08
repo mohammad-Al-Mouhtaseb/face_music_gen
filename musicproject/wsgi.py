@@ -13,8 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "musicproject.settings")
 
-application = get_wsgi_application(TimeoutError=5000)
-
-# application --timeout 300
+application = get_wsgi_application()
 
 app = application

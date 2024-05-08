@@ -24,6 +24,10 @@ def gen(request,text):
     )
     audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=256)
     scipy.io.wavfile.write("mainapp/music/m1.wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
+    return JsonResponse({"res":"sucsess"})
+
+
+def get(request,text):
     try:
         m = open("mainapp/music/m1.wav", 'rb')
         response = FileResponse(m)
