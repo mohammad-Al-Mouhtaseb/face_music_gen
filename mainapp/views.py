@@ -29,7 +29,7 @@ def gen(request,text):
     scipy.io.wavfile.write("mainapp/music/m1.wav", rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
     return JsonResponse({"res":"sucsess"})
 
-
+@async
 def get(request,text):
     try:
         m = open("mainapp/music/m1.wav", 'rb')
