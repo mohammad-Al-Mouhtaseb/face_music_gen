@@ -16,6 +16,9 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
 sampling_rate = model.config.audio_encoder.sampling_rate
 
+from djutils.decorators import async
+
+@async
 def gen(request,text):
     inputs = processor(
         text=["80s pop track with bassy drums and synth", "90s rock song with loud guitars and heavy drums"],
