@@ -8,8 +8,8 @@ import requests
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
 import scipy
 
-model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small", force_download=False)
-processor = AutoProcessor.from_pretrained("facebook/musicgen-small", force_download=False)
+model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small", force_download=True)
+processor = AutoProcessor.from_pretrained("facebook/musicgen-small", force_download=True)
 
 import torch
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
