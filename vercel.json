@@ -7,10 +7,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "musicproject/wsgi.py"
+            "dest": "/"
         }
-    ],
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/" }
-      ]
+    ]
 }
