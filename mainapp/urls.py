@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('gen/<str:text>',views.gen,name='gen'),
-    path('get/<str:text>',views.get,name='get'),
+    path('gen',views.gen,name='gen'),
+    path('get_music',views.get_music,name='get_music'),
+    path('get_my_list',views.get_my_list,name='get_my_list'),
+    path('get_folder_list',views.get_folder_list,name='get_folder_list'),
 ]

@@ -4,7 +4,7 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-        "startCommand": "gunicorn musicproject.wsgi --timeout 1200000 && !pip install git+https://github.com/facebookresearch/audiocraft.git && !apt-get install ffmpeg",
+        "startCommand": "gunicorn musicproject.wsgi --timeout 1200000",
         "restartPolicyType": "ON_FAILURE",
         "restartPolicyMaxRetries": 10
     }
