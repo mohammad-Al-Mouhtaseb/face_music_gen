@@ -9,5 +9,8 @@
             "src": "/(.*)",
             "dest": "musicproject/wsgi.py"
         }
-    ]
+    ],
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/" }
+      ]
 }
