@@ -81,3 +81,27 @@ def get_folder_list(request):
             music_urls.append(str(i.music_path))
             music_names.append(n[-1])
     return JsonResponse({"music_names":music_names,"music_urls":music_urls})
+
+@csrf_exempt
+def surahList(request):
+    url = "https://online-quran-api.p.rapidapi.com/surahs"
+    headers = {
+        "X-RapidAPI-Key": "4120ca7630msh5566122415863dep16069fjsn207bd1f0e6f4",
+        "X-RapidAPI-Host": "online-quran-api.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    surahList = response.json()['surahList']
+    res=[]
+    for i in surahList:
+        res.append(i["name"])
+    return JsonResponse({"surahList":res})
+
+@csrf_exempt
+def surah_audio(request,name):
+    url = "https://online-quran-api.p.rapidapi.com/surahs/"+name
+    headers = {
+        "X-RapidAPI-Key": "4120ca7630msh5566122415863dep16069fjsn207bd1f0e6f4",
+        "X-RapidAPI-Host": "online-quran-api.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse({"audio":response.json()['audio']})
